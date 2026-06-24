@@ -4,6 +4,8 @@
 
 This is **Generative AI for Beginners** — a 21-lesson educational curriculum by Microsoft teaching Generative AI fundamentals and application development. It is a content-heavy tutorial repository, not a production application. The primary artifacts are Markdown lesson files, Jupyter notebooks, and standalone code examples in Python, TypeScript, JavaScript, and .NET.
 
+For extended setup commands, development workflows, and troubleshooting, see [AGENTS.md](./AGENTS.md). This file focuses on the conventions and quick-reference details most useful to AI assistants.
+
 ## Repository Structure
 
 ```
@@ -70,9 +72,9 @@ Defined in `.env` (see `.env.copy` for template):
 
 ## CI / Validation
 
-There are **no unit tests or integration tests**. The only CI is Markdown validation on PRs to `main`:
+As of this writing, the repository has no unit tests or integration tests. CI consists of Markdown validation on PRs to `main` (defined in `.github/workflows/validate-markdown.yml`):
 
-**Workflow**: `.github/workflows/validate-markdown.yml` — runs on PR when `.md` or `.ipynb` files change (excluding `translations/`). Five checks:
+**Workflow** runs on PR when `.md` or `.ipynb` files change (excluding `translations/`). Five checks:
 1. **Broken relative paths** — all relative links must resolve
 2. **Paths have tracking** — relative links must end with `?WT.mc_id=academic-105485-koreyst`
 3. **URLs have tracking** — Microsoft domain URLs must include the tracking ID
@@ -110,6 +112,8 @@ There are **no unit tests or integration tests**. The only CI is Markdown valida
 - **No secrets in code**: All credentials come from `.env` via `python-dotenv` (Python) or `dotenv` (Node.js).
 
 ## PR Guidelines
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for full contribution rules and workflow check details. Key points for AI assistants:
 
 - Fork first, one PR per logical change
 - Test code in both Python and TypeScript when applicable

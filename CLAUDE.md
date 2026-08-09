@@ -72,20 +72,22 @@ Defined in `.env` (see `.env.copy` for template):
 
 ## CI / Validation
 
-As of this writing, the repository has no unit tests or integration tests. CI consists of Markdown validation on PRs to `main` (defined in `.github/workflows/validate-markdown.yml`):
+The repository ships **no actual test suite** — there is no `tests/` directory, even though `pyproject.toml` configures `pytest` (`testpaths = ["tests"]`) and lists a `dev` optional-dependency group (`black`, `isort`, `mypy`, `ruff`, `pytest`, `pytest-cov`). Treat that config as scaffolding for future tests, not a suite you can run today.
 
-**Workflow** runs on PR when `.md` or `.ipynb` files change (excluding `translations/`). Five checks:
+The only content-validating CI is Markdown validation (defined in `.github/workflows/validate-markdown.yml`). It runs on PRs to `main` when `.md` or `.ipynb` files change (excluding `translations/` and `translated_images/`). Five sequential checks, all via `john0isaac/action-check-markdown`:
 1. **Broken relative paths** — all relative links must resolve
 2. **Paths have tracking** — relative links must end with `?WT.mc_id=academic-105485-koreyst`
 3. **URLs have tracking** — Microsoft domain URLs must include the tracking ID
 4. **URLs don't have locale** — no `/en-us/` or `/en/` in URLs
 5. **Broken URLs** — external URLs must be reachable
 
+Other workflows handle repository automation, not validation: `stale.yml` (stale issue/PR sweeping), `lock.yml` (lock closed threads), and `welcome-issue.yml` / `welcome-pr.yml` (first-time contributor greetings).
+
 ## Code Style
 
 ### Python
 - **Formatter**: Black (line length 100, target py310+)
-- **Linter**: Ruff (E, W, F, I, B, C4, UP, S rules; E501 ignored)
+- **Linter**: Ruff (E, W, F, I, B, C4, UP, S rules; `E501` and `S101` ignored — asserts are common in educational code; `S101` also ignored under `tests/`)
 - **Import sorting**: isort (black profile, line length 100)
 - **Type checking**: mypy (Python 3.10, lenient — no strict untyped enforcement)
 - Use `python-dotenv` for env vars; never hardcode credentials

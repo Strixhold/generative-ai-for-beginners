@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "rapidapi-caller-id-social-search": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: caller-id-social-search-eyecon.p.rapidapi.com",
+        "--header",
+        "x-api-key: ${RAPIDAPI_KEY}"
+      ]
+    }
+  }
+}

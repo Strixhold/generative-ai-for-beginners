@@ -69,6 +69,7 @@ Defined in `.env` (see `.env.copy` for template):
 - `AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT`, `AZURE_OPENAI_API_VERSION` — Azure embeddings
 - `HUGGING_FACE_API_KEY` — Hugging Face
 - `GITHUB_TOKEN` — GitHub Models
+- `RAPIDAPI_KEY` — RapidAPI-backed MCP servers declared in `.mcp.json`
 
 ## CI / Validation
 

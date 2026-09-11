@@ -82,6 +82,19 @@ All lessons requiring API access use environment variables defined in `.env`:
 - `AZURE_OPENAI_API_VERSION` - API version (default: `2024-02-01`)
 - `HUGGING_FACE_API_KEY` - For Hugging Face models
 - `GITHUB_TOKEN` - For GitHub Models
+- `RAPIDAPI_KEY` - For RapidAPI-backed MCP servers (see `.mcp.json`)
+
+### MCP Servers
+
+`.mcp.json` declares MCP servers available to AI coding assistants in this repo.
+Credentials are never stored in that file - it references environment variables
+(for example `${RAPIDAPI_KEY}`), which are resolved from your shell environment
+or `.env` when the server is launched.
+
+Configured servers:
+
+- `rapidapi-caller-id-social-search` - RapidAPI Hub bridge to the Caller ID &
+  Social Search (Eyecon) API, run through `npx mcp-remote`. Requires `RAPIDAPI_KEY`.
 
 ### Running Python Examples
 
